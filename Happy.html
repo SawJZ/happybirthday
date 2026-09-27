@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Hsu ✨</title>
+    <!-- Romantic Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        /* 1. Magical Aura Background */
+        body {
+            background: #fff1f2;
+            min-height: 100vh;
+            display: flex; justify-content: center; align-items: center;
+            font-family: 'Poppins', sans-serif; overflow: hidden; color: #441630;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            width: 200%; height: 200%;
+            background: conic-gradient(from 180deg at 50% 50%, #ffe4e6 0deg, #fecdd3 120deg, #fff1f2 240deg, #ffe4e6 360deg);
+            animation: rotateAura 15s linear infinite;
+            filter: blur(80px);
+            z-index: 1;
+            opacity: 0.8;
+        }
+
+        @keyframes rotateAura {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* 2. Floating Hearts Background */
+        .hearts-bg {
+            position: absolute; width: 100%; height: 100%;
+            top: 0; left: 0; z-index: 2; overflow: hidden;
+        }
+
+        .heart-sparkle {
+            position: absolute; bottom: -20px;
+            color: rgba(236, 72, 153, 0.4);
+            font-size: 1.2rem;
+            animation: floatUp 5s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* 3. Magical Glassmorphism Card */
+        .card {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            padding: 50px 30px;
+            border-radius: 35px;
+            box-shadow: 0 20px 60px rgba(244, 63, 94, 0.15), inset 0 0 15px rgba(255, 255, 255, 0.5);
+            text-align: center; max-width: 440px; width: 90%;
+            position: relative; z-index: 10;
+            transition: all 0.5s ease;
+        }
+
+        /* Centered Title */
+        .title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.3rem;
+            text-align: center;
+            background: linear-gradient(135deg, #be185d 0%, #db2777 50%, #fb923c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
+            text-shadow: 0 3px 6px rgba(190, 24, 93, 0.1);
+        }
+
+        /* Interactive Heart Cake Styling */
+        .cake-container {
+            position: relative;
+            width: 140px; height: 140px;
+            margin: 10px auto 40px;
+            cursor: pointer;
+        }
+
+        .heart-cake {
+            width: 100px; height: 100px;
+            background: linear-gradient(135deg, #fbcfe8, #f472b6);
+            position: absolute; top: 30px; left: 20px;
+            transform: rotate(-45deg); border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(236, 72, 153, 0.2);
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .heart-cake::before, .heart-cake::after {
+            content: ''; position: absolute;
+            width: 100px; height: 100px;
+            background: inherit; border-radius: 50%;
+        }
+
+        .heart-cake::before { top: -50px; left: 0; }
+        .heart-cake::after { top: 0; left: 50px; }
+
+        .cake-container:hover .heart-cake {
+            transform: rotate(-45deg) scale(1.08);
+        }
+
+        .cake-container.active .heart-cake {
+            background: linear-gradient(135deg, #fbcfe8 0%, #db2777 100%);
+            box-shadow: 0 10px 25px rgba(236, 72, 153, 0.3), 0 0 30px rgba(236, 72, 153, 0.6);
+        }
+
+        /* Thin Candle & Flame */
+        .candle {
+            width: 11px; height: 50px;
+            background: linear-gradient(to right, #fffbeb, #fef3c7);
+            position: absolute; top: -35px; left: 50%;
+            transform: translateX(-50%); z-index: 20; border-radius: 6px;
+        }
+
+        .flame {
+            width: 15px; height: 24px;
+            background: radial-gradient(ellipse at bottom, #fef9c3 0%, #fb923c 70%, transparent 100%);
+            border-radius: 50% 50% 20% 20%;
+            position: absolute; top: -22px; left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 20px rgba(251, 146, 60, 0.9);
+            animation: flicker 0.25s infinite alternate;
+            transition: opacity 0.7s ease;
+        }
+
+        @keyframes flicker {
+            0% { transform: translateX(-50%) scale(1) rotate(-1.5deg); opacity: 0.85; }
+            100% { transform: translateX(-50%) scale(1.15) rotate(1.5deg); opacity: 1; }
+        }
+
+        .flame.out { opacity: 0; animation: none; }
+
+        .instruction {
+            font-size: 0.95rem; color: #be185d;
+            margin-top: 15px; font-weight: 500;
+            animation: magicalPulse 2s infinite;
+        }
+
+        @keyframes magicalPulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        .message {
+            opacity: 0; max-height: 0; overflow: hidden;
+            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 1.05rem; line-height: 1.8; color: #500724;
+            font-weight: 400; text-align: center;
+        }
+
+        .message.show {
+            opacity: 1; max-height: 500px;
+            margin-top: 25px; padding-top: 20px;
+            border-top: 1px solid rgba(190, 24, 93, 0.15);
+        }
+
+        .highlight { color: #db2777; font-weight: 600; }
+        .heart-icon { color: #e11d48; font-size: 1.2rem; }
+    </style>
+</head>
+<body>
+
+    <!-- Background Piano Audio -->
+    <audio id="bg-music" preload="auto">
+        <source src="song.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Floating Hearts Background -->
+    <div class="hearts-bg" id="hearts-bg"></div>
+
+    <div class="card">
+        <!-- Title -->
+        <h1 class="title">For Hsu, who is so special to me ✨</h1>
+
+        <!-- Clickable Heart Cake -->
+        <div class="cake-container" onclick="blowCandle()" id="cake-container">
+            <div class="candle">
+                <div class="flame" id="flame"></div>
+            </div>
+            <div class="heart-cake"></div>
+        </div>
+
+        <p class="instruction" id="instruction">💫 မီးတိုင်လေးကို နှိပ်ပြီး ဆုတောင်းလိုက်ပါ 💫</p>
+
+        <!-- Surprise Message -->
+        <div class="message" id="message">
+            <p>Hsu ရဲ့ ယခုလက်ရှိ မွေးနေ့ကနေစပြီး ပျော်ရွှင်စရာတွေနဲ့ပဲကြုံရပြီး အအောင်မြင်ဆုံးနေ့ရက်တွေကိုပဲ ပိုင်ဆိုင်နိုင်ပါစေနော်။ မင်းဟာ ကိုယ့်ကမ္ဘာလေးမလို့ အမြဲတမ်း ပြုံးနေပေးပါနော်။ <span class="heart-icon">❤️</span></p>
+            <br>
+            <p>စိတ်ချမ်းသာ ကိုယ်ကျန်းမာပြီး လိုရာဆန္ဒတွေအားလုံး ပြည့်ဝပြီး စိတ်ချမ်းသာပျော်ရွှင် ပါစေလို့ ဆုတောင်းပေးပါတယ်နော်။<br><br>
+            <span class="highlight">မွေးနေ့မှာ အပျော်ရွှင်ဆုံးဖြစ်ပါစေနော်။</span> <span class="heart-icon">🎂</span></p>
+        </div>
+    </div>
+
+    <script>
+        // Floating Background Hearts
+        function createFloatingHearts() {
+            const container = document.getElementById('hearts-bg');
+            const hearts = ['❤️', '💖', '✨', '🌸', '💕'];
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart-sparkle';
+                heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heart.style.animationDuration = Math.random() * 3 + 4 + 's';
+                container.appendChild(heart);
+            }
+        }
+        createFloatingHearts();
+
+        // Blow Candle & Play Audio
+        let blown = false;
+        function blowCandle() {
+            if (blown) return;
+            blown = true;
+
+            // Play Music
+            const music = document.getElementById('bg-music');
+            music.volume = 0.8;
+            music.play().catch(e => console.log("Audio autoplay prevented:", e));
+
+            // Extinguish Flame & Glow Effect
+            document.getElementById('flame').classList.add('out');
+            document.getElementById('instruction').style.display = 'none';
+            document.getElementById('cake-container').classList.add('active');
+
+            // Confetti Explosion
+            confetti({
+                particleCount: 160,
+                spread: 100,
+                origin: { y: 0.7 },
+                colors: ['#f472b6', '#fbcfe8', '#db2777', '#fbbf24', '#ffffff']
+            });
+
+            // Reveal Message
+            setTimeout(() => {
+                document.getElementById('message').classList.add('show');
+            }, 600);
+        }
+    </script>
+</body>
+</html>
